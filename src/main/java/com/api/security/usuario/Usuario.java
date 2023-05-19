@@ -1,9 +1,12 @@
 package com.api.security.usuario;
+import com.api.security.persona.Persona;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -30,6 +33,9 @@ public class Usuario implements UserDetails{
     
     @Enumerated(EnumType.STRING)
     private Role role;
+    
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Persona persona;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
