@@ -1,11 +1,12 @@
 package com.api.security.usuario;
 import com.api.security.persona.Persona;
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import java.util.Collection;
 import java.util.List;
@@ -28,13 +29,17 @@ public class Usuario implements UserDetails{
     @GeneratedValue
     private int id;
     
-    private String nombreUsuario;
+    private String email;
+    
+    @JsonIgnore
     private String contraseña;
     
     @Enumerated(EnumType.STRING)
     private Role role;
     
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name = "id_persona")
     private Persona persona;
 
     @Override
@@ -49,7 +54,7 @@ public class Usuario implements UserDetails{
 
     @Override
     public String getUsername() {
-        return nombreUsuario;
+        return email;
     }
 
     @Override
