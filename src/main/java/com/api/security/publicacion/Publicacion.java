@@ -4,6 +4,7 @@ import com.api.security.comentario.Comentario;
 import com.api.security.persona.Persona;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -29,7 +30,10 @@ public class Publicacion {
     @GeneratedValue
     private int id;
     private String titulo;
+    
+    @Column(length = 3000)
     private String contenido;
+    
     private String tema;
     private LocalDateTime fecha;
     private String autor;
