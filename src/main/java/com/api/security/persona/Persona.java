@@ -1,6 +1,7 @@
 package com.api.security.persona;
 
 import com.api.security.estomago.Estomago;
+import com.api.security.imagen.Imagen;
 import com.api.security.publicacion.Publicacion;
 import com.api.security.usuario.Usuario;
 import jakarta.persistence.CascadeType;
@@ -29,13 +30,16 @@ public class Persona {
     @GeneratedValue
     private int id;
     
+    private String nombreCompleto;
     private String nombreUsuario;
-    private String urlAvatar;
     private int pesoCorporal;
     private double cantidadActividad;
     
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
     private Usuario usuario;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Imagen imgAvatar;
     
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
     private Estomago estomago;

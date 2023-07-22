@@ -36,16 +36,6 @@ public class ComentarioService implements IComentarioService{
                 .publicacion(publicacion)
                 .build();
 
-        List<Comentario> listaComentario = publicacion.getComentarios();
-        
-        listaComentario.add(comentarioNuevo);
-        
-        publicacion.setComentarios(listaComentario);
-
-        
-
-        publicacionRepo.save(publicacion);
-
         return comentarioRepo.save(comentarioNuevo);
     }
     

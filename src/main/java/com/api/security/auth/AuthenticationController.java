@@ -1,5 +1,6 @@
 package com.api.security.auth;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     
     private final AuthenticationService authService;
+    private final HttpServletRequest httpRequest;
     
     @PostMapping("/registrar")
     public ResponseEntity<AuthenticationResponse> register(
@@ -27,7 +29,7 @@ public class AuthenticationController {
         if(authService.existsByNombreUsuario(request.getNombreUsuario()))
             return new ResponseEntity("El nombre de usuario ya existe", HttpStatus.BAD_REQUEST);
         
-        return ResponseEntity.ok(authService.register(request));
+        return ResponseEntity.ok(authService.register(request, httpRequest));
     }
     @PostMapping("/iniciar-sesion")
     public ResponseEntity<AuthenticationResponse> authenticate(

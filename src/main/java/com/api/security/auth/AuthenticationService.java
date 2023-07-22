@@ -3,11 +3,14 @@ package com.api.security.auth;
 import com.api.security.config.JwtService;
 import com.api.security.estomago.Estomago;
 import com.api.security.estomago.EstomagoService;
+import com.api.security.imagen.Imagen;
+import com.api.security.imagen.ImagenService;
 import com.api.security.persona.Persona;
 import com.api.security.persona.PersonaRepository;
 import com.api.security.usuario.Role;
 import com.api.security.usuario.Usuario;
 import com.api.security.usuario.UsuarioRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +29,7 @@ public class AuthenticationService {
     private final PasswordEncoder passEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authManager;
-    private final EstomagoService estomagoService;
+    private final ImagenService imgService;
     
     public boolean existsByEmail(String email){
         return usuarioRepo.existsByEmail(email);
@@ -35,11 +38,19 @@ public class AuthenticationService {
         return personaRepo.existsByNombreUsuario(nombreUsuario);
     }
     
-    public AuthenticationResponse register (RegisterRequest request){
+    public AuthenticationResponse register (RegisterRequest request, HttpServletRequest httpRequest){
+        
+        String url = imgService.obtenerUrlImagen(httpRequest, "avatar1.jpg");
+        
+        Imagen imagen = Imagen.builder()
+                .path(url)
+                .nombre("avatar1.jpg")
+                .build();
         
         var persona = Persona.builder()
+            .nombreCompleto(request.getNombreCompleto())
             .nombreUsuario(request.getNombreUsuario())
-            .urlAvatar("../../../assets/images/avatar/avatar-default.jpg")
+            .imgAvatar(imagen)
             .pesoCorporal(request.getPesoCorporal())
             .cantidadActividad(request.getCantidadActividad())
             .build();
