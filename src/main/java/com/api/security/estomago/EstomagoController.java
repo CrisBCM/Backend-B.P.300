@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/v3/comida")
 @RequiredArgsConstructor
-@CrossOrigin
 public class EstomagoController {
     
     private final IEstomagoService estomagoService;
@@ -53,17 +52,17 @@ public class EstomagoController {
         return ResponseEntity.ok("La comida fue eliminada correctamente.");
     }
     
-    @GetMapping("/{nombreFile:.+}")
-    public ResponseEntity<Resource> obtenerImagen(@PathVariable String nombreFile) throws IOException
-    {
-        Resource file = imagenService.cargarResource(nombreFile);
-        String contentType = Files.probeContentType(file.getFile().toPath());
-        
-        return ResponseEntity
-                .ok()
-                .header(HttpHeaders.CONTENT_TYPE, contentType)
-                .body(file);
-    }
+//    @GetMapping("/{nombreFile:.+}")
+//    public ResponseEntity<Resource> obtenerImagen(@PathVariable String nombreFile) throws IOException
+//    {
+//        Resource file = imagenService.cargarResource(nombreFile);
+//        String contentType = Files.probeContentType(file.getFile().toPath());
+//        
+//        return ResponseEntity
+//                .ok()
+//                .header(HttpHeaders.CONTENT_TYPE, contentType)
+//                .body(file);
+//    }
     @PutMapping(value = "/editar/{idEstomago}/{idComida}/{nombreUsuario}", consumes = { "multipart/form-data" })
     public ResponseEntity<Comida> editarComida(@PathVariable int idEstomago,
                                                @PathVariable int idComida,

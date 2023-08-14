@@ -1,17 +1,14 @@
-package com.api.security.publicacion;
+package com.api.security.respuesta;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class PublicacionRequest {
-    private String titulo;
+@NoArgsConstructor
+public class RespuestaDto {
     private String contenido;
-    private String tema;
+    private LocalDateTime fecha;
 }

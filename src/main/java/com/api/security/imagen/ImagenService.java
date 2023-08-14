@@ -71,7 +71,7 @@ public class ImagenService implements IImagenService{
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
-                .path("/v3/comida/")
+                .path("/imagen/obtener/")
                 .path(fileName)
                 .toUriString();
         

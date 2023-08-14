@@ -5,6 +5,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,18 +32,43 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
            @NonNull FilterChain filterChain
     ) throws ServletException, IOException 
     {
-        final String authHeader = request.getHeader("Authorization");
+        final String authHeader = request.getHeader("authorization");
         final String jwtToken;
         final String nombreUsuario;
         
+        
+        Map<String, String> map = new HashMap<String, String>();
+
+        Enumeration headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String key = (String) headerNames.nextElement();
+            String value = request.getHeader(key);
+            map.put(key, value);
+        }
+        
+        
+        System.out.println("request HEADERS: " + map);
+        
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
+            
+            System.out.println("authHeader == null || authHeader no empiece con Bearer :C");
+            
             filterChain.doFilter(request, response);
             return;
         }
         
+        System.out.println("AUTHHEADER: " + authHeader);
+        
+        System.out.println("Realizando autenticacion de token");
+        
         jwtToken = authHeader.substring(7);
         
+        System.out.println("TOKEN: " + jwtToken);
+        
         nombreUsuario = jwtService.extractUserName(jwtToken);
+        
+        
+        System.out.println("NombreUsuario: " + nombreUsuario);
         
         if(nombreUsuario != null && SecurityContextHolder.getContext().getAuthentication() == null){
             

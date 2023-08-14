@@ -37,6 +37,7 @@ public class Publicacion {
     private String tema;
     private LocalDateTime fecha;
     private String autor;
+    private String fotoAutor;
     
     @ManyToOne
     @JsonIgnore

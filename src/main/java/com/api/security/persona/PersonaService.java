@@ -1,8 +1,10 @@
 
 package com.api.security.persona;
 
+import com.api.security.comentario.IComentarioService;
 import com.api.security.imagen.Imagen;
 import com.api.security.imagen.ImagenService;
+import com.api.security.publicacion.IPublicacionService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ public class PersonaService implements IPersonaService{
     private PersonaRepository personaRepo;
     @Autowired
     private ImagenService imgService;
+    @Autowired
+    private IPublicacionService publicacionService;
+    @Autowired
+    private IComentarioService comentarioService;
 
     @Override
     public Persona obtenerPersona(int id) {
@@ -32,6 +38,10 @@ public class PersonaService implements IPersonaService{
         }
         
         persona.setImgAvatar(nuevaImagenAvatar);
+        
+        persona.setPublicaciones(publicacionService.actualizarFotoPublicacion(persona));
+        persona.setComentarios(comentarioService.cambiarFotoComentario(persona));
+        
         Persona personaEditada = personaRepo.save(persona);
         
         return personaEditada.getImgAvatar();

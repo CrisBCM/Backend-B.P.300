@@ -1,8 +1,10 @@
 package com.api.security.persona;
 
+import com.api.security.comentario.Comentario;
 import com.api.security.estomago.Estomago;
 import com.api.security.imagen.Imagen;
 import com.api.security.publicacion.Publicacion;
+import com.api.security.respuesta.Respuesta;
 import com.api.security.usuario.Usuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -46,4 +48,10 @@ public class Persona {
     
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private List<Publicacion> publicaciones;
+    
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    private List<Comentario> comentarios;
+    
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    private List<Respuesta> respuestas;
 }

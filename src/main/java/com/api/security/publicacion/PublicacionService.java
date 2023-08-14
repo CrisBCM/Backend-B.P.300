@@ -3,6 +3,7 @@ package com.api.security.publicacion;
 import com.api.security.comida.Comida;
 import com.api.security.persona.Persona;
 import com.api.security.persona.PersonaRepository;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -22,12 +23,19 @@ public class PublicacionService implements IPublicacionService{
     }
 
     @Override
-    public Publicacion añadirPublicacion(int idPersona, Publicacion publicacion) {
+    public Publicacion añadirPublicacion(int idPersona, PublicacionRequest requestPublicacion) {
         
         Persona persona = personaRepo.findById(idPersona).orElse(null);
         
-        publicacion.setPersona(persona);
-        publicacion.setAutor(persona.getNombreUsuario());
+        Publicacion publicacion = Publicacion.builder()
+                                    .autor(persona.getNombreUsuario())
+                                    .tema(requestPublicacion.getTema())
+                                    .titulo(requestPublicacion.getTitulo())
+                                    .contenido(requestPublicacion.getContenido())
+                                    .fotoAutor(persona.getImgAvatar().getPath())
+                                    .fecha(LocalDateTime.now())
+                                    .persona(persona)
+                                    .build();
 
         List<Publicacion> publicaciones = persona.getPublicaciones();
 
@@ -38,8 +46,6 @@ public class PublicacionService implements IPublicacionService{
         Persona personaGuardada = personaRepo.save(persona);
         
         Publicacion publicacionGuardada = Collections.max(personaGuardada.getPublicaciones(), Comparator.comparingLong(Publicacion::getId));
-        
-        System.out.println("LLEGUE ACA 7");
         return publicacionGuardada;
     }
 
@@ -58,10 +64,19 @@ public class PublicacionService implements IPublicacionService{
             publicacion.setContenido(publicacionRequest.getContenido());
         if(publicacionRequest.getTema() != null) 
             publicacion.setTema(publicacionRequest.getTema());
-        if(publicacionRequest.getFecha() != null) 
-            publicacion.setFecha(publicacionRequest.getFecha());
         
         return publicacionRepository.save(publicacion);
+    }
+
+    @Override
+    public List<Publicacion> actualizarFotoPublicacion(Persona persona) {
+        List<Publicacion> listaPublicaciones = persona.getPublicaciones();
+
+        for(Publicacion publicacion : listaPublicaciones){
+            publicacion.setFotoAutor(persona.getImgAvatar().getPath());
+        }
+
+        return listaPublicaciones;
     }
     
 }

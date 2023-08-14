@@ -3,7 +3,6 @@ package com.api.security.publicacion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/publicacion")
 public class PublicacionController {
     
@@ -26,8 +24,10 @@ public class PublicacionController {
         return publicacionService.obtenerPublicaciones();
     }
     @PostMapping("/añadir/{idPersona}")
-    public ResponseEntity<Publicacion> añadirPublicacion(@PathVariable int idPersona, @RequestBody Publicacion publicacion){
-       Publicacion nuevaPublicacion = publicacionService.añadirPublicacion(idPersona, publicacion);
+    public ResponseEntity<Publicacion> añadirPublicacion(@PathVariable int idPersona, @RequestBody PublicacionRequest requestPublicacion){
+        
+        System.out.println("REQUEST PUBLICACION : " + requestPublicacion);
+       Publicacion nuevaPublicacion = publicacionService.añadirPublicacion(idPersona, requestPublicacion);
        
        return ResponseEntity.ok(nuevaPublicacion);
     }
