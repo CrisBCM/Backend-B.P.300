@@ -1,5 +1,7 @@
 package com.api.security.persona;
 
+import com.api.security.dto.PersonaDTO;
+import com.api.security.dto.PersonaResumenDTO;
 import com.api.security.imagen.Imagen;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +24,8 @@ public class PersonaController {
     private final HttpServletRequest request;
     
     @GetMapping("/obtener/{id}")
-    public Persona obtenerPersona(@PathVariable int id){
-        return personaService.obtenerPersona(id);
+    public PersonaDTO obtenerPersona(@PathVariable int id){
+        return new PersonaDTO(personaService.obtenerPersona(id));
     }
     @PostMapping("/avatar/cambiar/{nombreUsuario}")
     public ResponseEntity<Imagen> cambiarImagen(@PathVariable String nombreUsuario,
@@ -32,5 +34,9 @@ public class PersonaController {
         Imagen nuevaImagenAvatar = personaService.cambiarImagen(nombreUsuario, file, request);
         
         return ResponseEntity.ok(nuevaImagenAvatar);
+    }
+    @GetMapping("/usuario/{nombreUsuario}")
+    public PersonaResumenDTO obtenerUsuario(@PathVariable String nombreUsuario){
+        return new PersonaResumenDTO(personaService.obtenerUsuario(nombreUsuario));
     }
 }

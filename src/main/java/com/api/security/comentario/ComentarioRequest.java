@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ComentarioDto {
+public class ComentarioRequest {
     private String contenido;
     private LocalDateTime fecha;
 }

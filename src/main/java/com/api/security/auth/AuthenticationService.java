@@ -64,8 +64,7 @@ public class AuthenticationService {
              
         
         var estomago = Estomago.builder()
-            .listaComidas(new ArrayList())
-            .totalConsumido(0)
+            .comidas(new ArrayList())
             .persona(persona)
             .build();
         

@@ -47,5 +47,10 @@ public class PersonaService implements IPersonaService{
         return personaEditada.getImgAvatar();
     }
 
+    @Override
+    public Persona obtenerUsuario(String nombreUsuario) {
+        return personaRepo.findByNombreUsuario(nombreUsuario);
+    }
+
     
 }

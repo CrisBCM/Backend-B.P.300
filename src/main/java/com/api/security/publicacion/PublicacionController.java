@@ -1,6 +1,8 @@
 package com.api.security.publicacion;
 
+import com.api.security.dto.PublicacionDTO;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,16 +22,19 @@ public class PublicacionController {
     private IPublicacionService publicacionService;
     
     @GetMapping("/todas")
-    public List<Publicacion> obtenerPublicaciones(){
-        return publicacionService.obtenerPublicaciones();
+    public List<PublicacionDTO> obtenerPublicaciones(){
+        return publicacionService.obtenerPublicaciones()
+                                    .stream()
+                                    .map(publicacion -> new PublicacionDTO(publicacion))
+                                    .collect(Collectors.toList());
     }
     @PostMapping("/añadir/{idPersona}")
-    public ResponseEntity<Publicacion> añadirPublicacion(@PathVariable int idPersona, @RequestBody PublicacionRequest requestPublicacion){
+    public ResponseEntity<PublicacionDTO> añadirPublicacion(@PathVariable int idPersona, @RequestBody PublicacionRequest requestPublicacion){
         
         System.out.println("REQUEST PUBLICACION : " + requestPublicacion);
        Publicacion nuevaPublicacion = publicacionService.añadirPublicacion(idPersona, requestPublicacion);
        
-       return ResponseEntity.ok(nuevaPublicacion);
+       return ResponseEntity.ok(new PublicacionDTO(nuevaPublicacion));
     }
     @DeleteMapping("/eliminar/{idPublicacion}")
     public ResponseEntity<String> eliminarPublicacion(@PathVariable int idPublicacion){
@@ -38,8 +43,8 @@ public class PublicacionController {
         return ResponseEntity.ok("Publicacion eliminada correctamente");
     }
     @PutMapping("/editar/{idPublicacion}")
-    public Publicacion editarPublicacion(@PathVariable int idPublicacion, @RequestBody PublicacionRequest publicacion){
+    public PublicacionDTO editarPublicacion(@PathVariable int idPublicacion, @RequestBody PublicacionRequest publicacion){
         
-        return publicacionService.editarPublicacion(idPublicacion, publicacion);
+        return new PublicacionDTO(publicacionService.editarPublicacion(idPublicacion, publicacion));
     }
 }

@@ -26,23 +26,6 @@ public class EstomagoService implements IEstomagoService{
    
 
     @Override
-    public void setTotalConsumido(int id) {
-        Estomago estomago = estomagoRepo.findById(id).orElse(null);
-        
-        List<Comida> listaComida = estomago.getListaComidas();
-        
-        int totalCalorias = 0;
-        
-        for(Comida comida : listaComida){    
-            totalCalorias += comida.getCalorias();
-        }
-        
-        estomago.setTotalConsumido(totalCalorias);
-        
-        estomagoRepo.save(estomago);
-    }
-
-    @Override
     public Comida añadirComida(String nombreUsuario ,int id, MultipartFile file, String nombreComida, int calorias, HttpServletRequest request) {
 
         Estomago estomago = estomagoRepo.findById(id).orElse(null);
@@ -61,19 +44,15 @@ public class EstomagoService implements IEstomagoService{
         
         com.setImagen(imagen);
         
-        List<Comida> listaComida = (List<Comida>) estomago.getListaComidas();
+        List<Comida> listaComida = (List<Comida>) estomago.getComidas();
         
         listaComida.add(com);
         
-        estomago.setListaComidas(listaComida);
-        
-        
-        setTotalConsumido(id);
+        estomago.setComidas(listaComida);
         
         Estomago estomagoGuardado = estomagoRepo.save(estomago);
         
-        Comida comida = Collections.max(estomagoGuardado.getListaComidas(), Comparator.comparingLong(Comida::getId));
-        
+        Comida comida = Collections.max(estomagoGuardado.getComidas(), Comparator.comparingLong(Comida::getId));
         
         return comida;
     }
@@ -91,19 +70,17 @@ public class EstomagoService implements IEstomagoService{
        
        imagenService.eliminarResource(filename);
        
-       List<Comida> listaComidas = estomago.getListaComidas();
+       List<Comida> listaComidas = estomago.getComidas();
        
        if(!listaComidas.isEmpty()){
            
            listaComidas.remove(comida);
            
-           estomago.setListaComidas(listaComidas);
+           estomago.setComidas(listaComidas);
            
            estomagoRepo.save(estomago);
 
            comidaRepo.delete(comida);
-           
-           setTotalConsumido(idEstomago);   
        }
        
         
@@ -133,8 +110,6 @@ public class EstomagoService implements IEstomagoService{
         comida.setCalorias(nuevoCalorias);
         
         Comida savedComida = comidaRepo.save(comida);
-        
-        setTotalConsumido(idEstomago);
          
         return savedComida;
     }

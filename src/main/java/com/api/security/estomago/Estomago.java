@@ -26,13 +26,8 @@ public class Estomago {
     @Id
     @GeneratedValue
     private int id;
-    
-    
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Comida> listaComidas;
-    
-    private int totalConsumido;
-    
+    private List<Comida> comidas;
     @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "id_persona")

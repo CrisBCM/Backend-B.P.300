@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class Respuesta {
     @Id
     @GeneratedValue
-    int id;
+    private int id;
     
     private String autor;
     private String fotoAutor;
