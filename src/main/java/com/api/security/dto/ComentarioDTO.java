@@ -16,7 +16,7 @@ public class ComentarioDTO {
     private String contenido;
     private LocalDateTime fecha;
     private String nombrePublicacion;
-    
+    private int publicacionId;
     private Set<String> listaMeGusta = new HashSet<>();
     private Set<String> listaNoMeGusta = new HashSet<>();
     private List<RespuestaDTO> respuestas = new ArrayList<>();
@@ -28,7 +28,7 @@ public class ComentarioDTO {
         contenido = comentario.getContenido();
         fecha = comentario.getFecha();
         nombrePublicacion = comentario.getPublicacion().getTitulo();
-        
+        publicacionId = comentario.getPublicacion().getId();
         listaMeGusta = comentario.getListaMeGusta();
         listaNoMeGusta = comentario.getListaNoMeGusta();
         respuestas = comentario.getRespuestas()
@@ -72,6 +72,10 @@ public class ComentarioDTO {
 
     public List<RespuestaDTO> getRespuestas() {
         return respuestas;
+    }
+
+    public int getPublicacionId() {
+        return publicacionId;
     }
     
     

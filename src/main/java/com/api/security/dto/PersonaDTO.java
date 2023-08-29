@@ -15,6 +15,7 @@ public class PersonaDTO {
     private ImagenDTO imgAvatar;
     private EstomagoDTO estomago;
     private List<PublicacionDTO> publicaciones = new ArrayList<>();
+    private List<ComentarioDTO> comentarios = new ArrayList<>();
     
     public PersonaDTO(Persona persona){
         id = persona.getId();
@@ -27,6 +28,10 @@ public class PersonaDTO {
         publicaciones = persona.getPublicaciones()
                 .stream()
                 .map(publicacion -> new PublicacionDTO(publicacion))
+                .collect(Collectors.toList());
+        comentarios = persona.getComentarios()
+                .stream()
+                .map(comentario -> new ComentarioDTO(comentario))
                 .collect(Collectors.toList());
     }
 
@@ -60,6 +65,10 @@ public class PersonaDTO {
 
     public List<PublicacionDTO> getPublicaciones() {
         return publicaciones;
+    }
+
+    public List<ComentarioDTO> getComentarios() {
+        return comentarios;
     }
     
 }
