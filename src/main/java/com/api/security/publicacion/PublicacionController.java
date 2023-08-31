@@ -3,6 +3,8 @@ package com.api.security.publicacion;
 import com.api.security.dto.PublicacionDTO;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.api.security.dto.PublicacionRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,7 +45,7 @@ public class PublicacionController {
         return ResponseEntity.ok("Publicacion eliminada correctamente");
     }
     @PutMapping("/editar/{idPublicacion}")
-    public PublicacionDTO editarPublicacion(@PathVariable int idPublicacion, @RequestBody PublicacionRequest publicacion){
+    public PublicacionDTO editarPublicacion(@PathVariable int idPublicacion, @RequestBody PublicacionRequestDTO publicacion){
         
         return new PublicacionDTO(publicacionService.editarPublicacion(idPublicacion, publicacion));
     }

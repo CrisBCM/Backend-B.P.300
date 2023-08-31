@@ -1,6 +1,7 @@
 package com.api.security.publicacion;
 
 import com.api.security.comida.Comida;
+import com.api.security.dto.PublicacionRequestDTO;
 import com.api.security.persona.Persona;
 import com.api.security.persona.PersonaRepository;
 import java.time.LocalDateTime;
@@ -55,15 +56,14 @@ public class PublicacionService implements IPublicacionService{
     }
 
     @Override
-    public Publicacion editarPublicacion(int idPublicacion, PublicacionRequest publicacionRequest) {
+    public Publicacion editarPublicacion(int idPublicacion, PublicacionRequestDTO publicacionRequest) {
         Publicacion publicacion = publicacionRepository.findById(idPublicacion).orElse(null);
         
         if(publicacionRequest.getTitulo() != null) 
             publicacion.setTitulo(publicacionRequest.getTitulo());
+
         if(publicacionRequest.getContenido() != null) 
             publicacion.setContenido(publicacionRequest.getContenido());
-        if(publicacionRequest.getTema() != null) 
-            publicacion.setTema(publicacionRequest.getTema());
         
         return publicacionRepository.save(publicacion);
     }
