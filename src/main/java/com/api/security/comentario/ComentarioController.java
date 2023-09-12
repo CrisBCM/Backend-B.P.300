@@ -1,5 +1,6 @@
 package com.api.security.comentario;
 
+import com.api.security.dto.ComentarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,12 +34,12 @@ public class ComentarioController {
     }
     
     @PutMapping("/editar/{idComentario}")
-    public ResponseEntity<Comentario> editarComentario(@PathVariable int idComentario,
+    public ResponseEntity<ComentarioDTO> editarComentario(@PathVariable int idComentario,
                                                        @RequestParam ("contenido") String contenido)
     {
         Comentario comentario = comentarioService.editarComentario(idComentario, contenido);
         
-        return ResponseEntity.ok(comentario);
+        return ResponseEntity.ok(new ComentarioDTO(comentario));
     }
     
     @PutMapping("/megusta/{idComentario}/{nombreUsuario}")
