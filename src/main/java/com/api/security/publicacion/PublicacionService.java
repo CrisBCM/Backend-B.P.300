@@ -78,5 +78,19 @@ public class PublicacionService implements IPublicacionService{
 
         return listaPublicaciones;
     }
-    
+
+    @Override
+    public void meGusta(int publicacionId, String nombreUsuario) {
+        Publicacion publicacion = publicacionRepository.findById(publicacionId).orElse(null);
+        publicacion.addMeGusta(nombreUsuario);
+        publicacionRepository.save(publicacion);
+    }
+
+    @Override
+    public void noMeGusta(int publicacionId, String nombreUsuario) {
+        Publicacion publicacion = publicacionRepository.findById(publicacionId).orElse(null);
+        publicacion.addNoMeGusta(nombreUsuario);
+        publicacionRepository.save(publicacion);
+    }
+
 }

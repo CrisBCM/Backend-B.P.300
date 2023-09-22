@@ -49,4 +49,17 @@ public class PublicacionController {
         
         return new PublicacionDTO(publicacionService.editarPublicacion(idPublicacion, publicacion));
     }
+
+    @PutMapping("/megusta/{publicacionId}/{nombreUsuario}")
+    public void meGusta(@PathVariable int publicacionId,
+                        @PathVariable String nombreUsuario)
+    {
+        publicacionService.meGusta(publicacionId, nombreUsuario);
+    }
+    @PutMapping("/nomegusta/{publicacionId}/{nombreUsuario}")
+    public void noMeGusta(@PathVariable int publicacionId,
+                        @PathVariable String nombreUsuario)
+    {
+        publicacionService.noMeGusta(publicacionId, nombreUsuario);
+    }
 }

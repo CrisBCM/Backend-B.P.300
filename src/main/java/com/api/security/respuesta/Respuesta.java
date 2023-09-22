@@ -41,7 +41,6 @@ public class Respuesta {
     @Builder.Default
     private Set<String> listaMeGusta = new HashSet<>();
     @ElementCollection
-    
     @CollectionTable(name = "lista_no_me_gusta_resp", joinColumns = @JoinColumn(name = "respuesta_id"))
     @Column(name = "nombreUsuario", length = 50)
     @Builder.Default
@@ -58,26 +57,24 @@ public class Respuesta {
     private Comentario comentario;
     
     public void addListaMeGusta(String nombreUsuario){
-        if(listaNoMeGusta.contains(nombreUsuario)) listaNoMeGusta.remove(nombreUsuario);
-        
-        if(listaMeGusta.contains(nombreUsuario)){
-            listaMeGusta.remove(nombreUsuario);
-        }
-        else
-        {
+        if(!listaMeGusta.contains(nombreUsuario)){
+
+            if(listaNoMeGusta.contains(nombreUsuario)) listaNoMeGusta.remove(nombreUsuario);
+
             listaMeGusta.add(nombreUsuario);
+        }else{
+            listaMeGusta.remove(nombreUsuario);
         }
     }
     
     public void addListaNoMeGusta(String nombreUsuario){
-        if(listaMeGusta.contains(nombreUsuario)) listaMeGusta.remove(nombreUsuario);
-        
-        if(listaNoMeGusta.contains(nombreUsuario)){
-            listaNoMeGusta.remove(nombreUsuario);
-        }
-        else
-        {
+        if(!listaNoMeGusta.contains(nombreUsuario)){
+
+            if(listaMeGusta.contains(nombreUsuario)) listaMeGusta.remove(nombreUsuario);
+
             listaNoMeGusta.add(nombreUsuario);
+        }else{
+            listaNoMeGusta.remove(nombreUsuario);
         }
     }
     
