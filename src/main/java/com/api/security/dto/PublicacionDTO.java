@@ -25,6 +25,9 @@ public class PublicacionDTO {
     private String fotoAutor;
     
     private List<ComentarioDTO> comentarios = new ArrayList<>();
+    private Set<String> listaMeGusta = new HashSet<>();
+    private Set<String> listaNoMeGusta = new HashSet<>();
+    private int puntuacion;
     
     public PublicacionDTO(Publicacion publicacion){
         id = publicacion.getId();
@@ -38,6 +41,9 @@ public class PublicacionDTO {
                 .stream()
                 .map(comentario -> new ComentarioDTO(comentario))
                 .collect(Collectors.toList());
+        listaMeGusta = publicacion.getListaMeGusta();
+        listaNoMeGusta = publicacion.getListaNoMeGusta();
+        puntuacion = publicacion.getPuntuacion();
     }
 
     public int getId(){
@@ -71,5 +77,16 @@ public class PublicacionDTO {
     public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
-    
+
+    public Set<String> getListaMeGusta() {
+        return listaMeGusta;
+    }
+
+    public Set<String> getListaNoMeGusta() {
+        return listaNoMeGusta;
+    }
+
+    public int getPuntuacion() {
+        return puntuacion;
+    }
 }

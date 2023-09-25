@@ -46,6 +46,8 @@ public class Publicacion {
     @Column(name = "nombreUsuario", length = 50)
     @Builder.Default
     private Set<String> listaNoMeGusta = new HashSet<>();
+
+    private int puntuacion;
     
     @ManyToOne
     @JsonIgnore
@@ -61,23 +63,35 @@ public class Publicacion {
 
         if(!listaMeGusta.contains(nombreUsuario)){
 
-            if(listaNoMeGusta.contains(nombreUsuario)) listaNoMeGusta.remove(nombreUsuario);
+            if(listaNoMeGusta.contains(nombreUsuario)){
+                listaNoMeGusta.remove(nombreUsuario);
+                puntuacion++;
+            }
 
             listaMeGusta.add(nombreUsuario);
+            puntuacion++;
+
         }else{
             listaMeGusta.remove(nombreUsuario);
+            puntuacion--;
         }
+        recalcularPuntuacion();
     }
 
     public void addNoMeGusta(String nombreUsuario){
 
         if(!listaNoMeGusta.contains(nombreUsuario)){
 
-            if(listaMeGusta.contains(nombreUsuario)) listaMeGusta.remove(nombreUsuario);
-
+            if(listaMeGusta.contains(nombreUsuario)){
+                listaMeGusta.remove(nombreUsuario);
+            }
             listaNoMeGusta.add(nombreUsuario);
         }else{
             listaNoMeGusta.remove(nombreUsuario);
         }
+        recalcularPuntuacion();
+    }
+    public void recalcularPuntuacion(){
+        puntuacion = listaMeGusta.size() - listaNoMeGusta.size();
     }
 }

@@ -33,6 +33,7 @@ public class PublicacionService implements IPublicacionService{
                                     .tema(requestPublicacion.getTema())
                                     .titulo(requestPublicacion.getTitulo())
                                     .contenido(requestPublicacion.getContenido())
+                                    .puntuacion(0)
                                     .fotoAutor(persona.getImgAvatar().getPath())
                                     .fecha(LocalDateTime.now())
                                     .persona(persona)
