@@ -1,6 +1,8 @@
 package com.api.security.dto;
 
 import com.api.security.publicacion.Publicacion;
+import com.api.security.shared.Tema;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,7 +18,7 @@ public class PublicacionDTO {
     
     private String contenido;
     
-    private String tema;
+    private Tema tema;
     
     private LocalDateTime fecha;
     
@@ -58,7 +60,7 @@ public class PublicacionDTO {
         return contenido;
     }
 
-    public String getTema() {
+    public Tema getTema() {
         return tema;
     }
 

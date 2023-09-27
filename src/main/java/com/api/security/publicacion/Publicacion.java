@@ -1,7 +1,9 @@
 package com.api.security.publicacion;
 
+import com.api.security.categoria.Categoria;
 import com.api.security.comentario.Comentario;
 import com.api.security.persona.Persona;
+import com.api.security.shared.Tema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -31,8 +33,12 @@ public class Publicacion {
     
     @Column(length = 3000)
     private String contenido;
-    
-    private String tema;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoria_id")
+
+    private Categoria categoria;
+    private Tema tema;
     private LocalDateTime fecha;
     private String autor;
     private String fotoAutor;
