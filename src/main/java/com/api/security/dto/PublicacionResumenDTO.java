@@ -2,10 +2,12 @@ package com.api.security.dto;
 
 import com.api.security.publicacion.Publicacion;
 import com.api.security.shared.Tema;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 
+@Getter
 public class PublicacionResumenDTO {
     
     private int id;
@@ -13,9 +15,7 @@ public class PublicacionResumenDTO {
     private String titulo;
     
     private String contenido;
-    
-    private Tema tema;
-    
+    private String categoria;
     private LocalDateTime fecha;
     
     private String autor;
@@ -26,38 +26,9 @@ public class PublicacionResumenDTO {
         id = publicacion.getId();
         titulo = publicacion.getTitulo();
         contenido = publicacion.getContenido();
-        tema = publicacion.getTema();
         fecha = publicacion.getFecha();
         autor = publicacion.getAutor();
         fotoAutor = publicacion.getFotoAutor();
+        categoria = publicacion.getCategoria().getNombre();
     }
-
-    public int getId(){
-        return id;
-    }
-    
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public Tema getTema() {
-        return tema;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public String getFotoAutor() {
-        return fotoAutor;
-    }
-    
 }

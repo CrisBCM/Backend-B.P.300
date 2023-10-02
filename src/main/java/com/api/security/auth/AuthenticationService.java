@@ -17,6 +17,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -104,6 +105,10 @@ public class AuthenticationService {
         extraClaims.put("persona_id", persona.getId());
         
         extraClaims.put("nombreUsuario", persona.getNombreUsuario());
+
+        System.out.println(persona.getUsuario().getRole().name() + " ROLES....." );
+
+        extraClaims.put("role", persona.getUsuario().getRole().name());
         
         String jwtToken = jwtService.generateToken(extraClaims,user);
         

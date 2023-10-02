@@ -1,5 +1,7 @@
 package com.api.security.publicacion;
 
+import com.api.security.categoria.Categoria;
+import com.api.security.categoria.CategoriaRepository;
 import com.api.security.comida.Comida;
 import com.api.security.dto.PublicacionRequestDTO;
 import com.api.security.persona.Persona;
@@ -16,7 +18,10 @@ public class PublicacionService implements IPublicacionService{
     
     @Autowired
     PublicacionRepository publicacionRepository;
-    @Autowired PersonaRepository personaRepo;
+    @Autowired
+    PersonaRepository personaRepo;
+    @Autowired
+    CategoriaRepository categoriaRepository;
     
     @Override
     public List<Publicacion> obtenerPublicaciones() {
@@ -27,10 +32,11 @@ public class PublicacionService implements IPublicacionService{
     public Publicacion añadirPublicacion(int idPersona, PublicacionRequest requestPublicacion) {
         
         Persona persona = personaRepo.findById(idPersona).orElse(null);
+        Categoria categoria = categoriaRepository.findByNombre(requestPublicacion.getCategoria());
         
         Publicacion publicacion = Publicacion.builder()
                                     .autor(persona.getNombreUsuario())
-                                    .tema(requestPublicacion.getTema())
+                                    .categoria(categoria)
                                     .titulo(requestPublicacion.getTitulo())
                                     .contenido(requestPublicacion.getContenido())
                                     .puntuacion(0)

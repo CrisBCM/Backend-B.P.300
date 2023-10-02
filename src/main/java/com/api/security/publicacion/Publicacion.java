@@ -36,9 +36,7 @@ public class Publicacion {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "categoria_id")
-
     private Categoria categoria;
-    private Tema tema;
     private LocalDateTime fecha;
     private String autor;
     private String fotoAutor;

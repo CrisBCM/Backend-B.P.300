@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class PublicacionRequest {
     private String titulo;
     private String contenido;
-    private Tema tema;
+    private String categoria;
 }
