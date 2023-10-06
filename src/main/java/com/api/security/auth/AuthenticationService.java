@@ -106,7 +106,7 @@ public class AuthenticationService {
         
         extraClaims.put("nombreUsuario", persona.getNombreUsuario());
 
-        System.out.println(persona.getUsuario().getRole().name() + " ROLES....." );
+        System.out.println(persona.getUsuario().getAuthorities() + " ROLES....." );
 
         extraClaims.put("role", persona.getUsuario().getRole().name());
         
