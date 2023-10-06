@@ -24,5 +24,6 @@ public class Categoria {
     private String descripcion;
 
     @OneToMany(mappedBy = "categoria")
+    @Builder.Default
     private Set<Publicacion> publicaciones = new HashSet<>();
 }

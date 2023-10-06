@@ -1,5 +1,8 @@
 package com.api.security.categoria;
 
+import com.api.security.dto.CategoriaDTO;
+import com.api.security.dto.CategoriaResumenDTO;
+import com.api.security.usuario.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +21,21 @@ public class CategoriaController {
     ICategoriaService categoriaService;
 
     @GetMapping("/todas")
-    public List<Categoria> getCategorias(Authentication authentication)
+    public List<CategoriaDTO> getCategorias()
     {
-        System.out.println(authentication.getAuthorities() + " AUTORITHIES DE JUANNNNN");
         return categoriaService.obtenerCategorias();
     }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/crear")
-    public ResponseEntity<Categoria> crearCategoria(@RequestBody CategoriaRequest categoriaRequest)
+    @GetMapping("/resumen")
+    public List<CategoriaResumenDTO> getCategoriasResumen()
     {
+        return categoriaService.obtenerResumenCategorias();
+    }
+    @PostMapping("/crear")
+    public ResponseEntity<Object> crearCategoria(@RequestBody CategoriaRequest categoriaRequest)
+    {
+        if(categoriaService.existsByNombre(categoriaRequest.getNombre()))
+            return new ResponseEntity<>("El nombre de la categoria ya existe", HttpStatus.BAD_REQUEST);
+
         return ResponseEntity.ok(categoriaService.crearCategoria(categoriaRequest));
     }
 

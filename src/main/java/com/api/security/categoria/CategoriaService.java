@@ -1,10 +1,13 @@
 package com.api.security.categoria;
 
+import com.api.security.dto.CategoriaDTO;
+import com.api.security.dto.CategoriaResumenDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaService implements ICategoriaService{
@@ -13,17 +16,28 @@ public class CategoriaService implements ICategoriaService{
     private CategoriaRepository categoriaRepository;
 
     @Override
-    public List<Categoria> obtenerCategorias() {
-        return categoriaRepository.findAll();
+    public List<CategoriaDTO> obtenerCategorias() {
+        return categoriaRepository.findAll()
+                .stream()
+                .map(CategoriaDTO::new)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Categoria crearCategoria(CategoriaRequest categoriaRequest) {
-        return categoriaRepository.save(
-                            Categoria.builder()
-                            .nombre(categoriaRequest.getNombre())
-                            .descripcion(categoriaRequest.getDescripcion())
-                            .build());
+    public List<CategoriaResumenDTO> obtenerResumenCategorias() {
+        return categoriaRepository.findAll()
+                .stream()
+                .map(CategoriaResumenDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public CategoriaDTO crearCategoria(CategoriaRequest categoriaRequest) {
+        return new CategoriaDTO(categoriaRepository.save(
+                Categoria.builder()
+                        .nombre(categoriaRequest.getNombre())
+                        .descripcion(categoriaRequest.getDescripcion())
+                        .build()));
     }
 
     @Override
@@ -43,6 +57,10 @@ public class CategoriaService implements ICategoriaService{
             categoriaRepository.save(categoria);
 
         }
+    }
+    @Override
+    public boolean existsByNombre(String nombre){
+        return categoriaRepository.existsByNombre(nombre);
     }
 
 }
