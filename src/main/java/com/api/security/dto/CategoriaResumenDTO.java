@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 public class CategoriaResumenDTO {
-    private int id;
     private String nombre;
+    private boolean habilitado;
 
     public CategoriaResumenDTO (Categoria categoria){
-        id = categoria.getId();
         nombre = categoria.getNombre();
+        habilitado = categoria.isHabilitado();
     }
 }

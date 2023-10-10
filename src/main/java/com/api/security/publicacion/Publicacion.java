@@ -34,9 +34,10 @@ public class Publicacion {
     @Column(length = 3000)
     private String contenido;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
     private LocalDateTime fecha;
     private String autor;
     private String fotoAutor;
@@ -53,12 +54,11 @@ public class Publicacion {
 
     private int puntuacion;
     
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_persona")
     private Persona persona;
     
-    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Builder.Default
     private List<Comentario> comentarios = new ArrayList<>();

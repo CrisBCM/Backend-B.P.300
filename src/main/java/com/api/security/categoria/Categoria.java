@@ -2,10 +2,7 @@ package com.api.security.categoria;
 
 import com.api.security.publicacion.Publicacion;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +10,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Data
+@Getter
 @Entity
 public class Categoria {
     @Id
@@ -22,8 +19,29 @@ public class Categoria {
 
     private String nombre;
     private String descripcion;
+    private boolean habilitado;
 
-    @OneToMany(mappedBy = "categoria")
-    @Builder.Default
-    private Set<Publicacion> publicaciones = new HashSet<>();
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    private Set<Publicacion> publicaciones;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setPublicaciones(Set<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+
+    public void addPublicacion(Publicacion publicacion){
+        publicacion.setCategoria(this);
+        publicaciones.add(publicacion);
+    }
+
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
+    }
 }

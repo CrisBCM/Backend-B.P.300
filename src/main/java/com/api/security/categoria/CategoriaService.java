@@ -6,6 +6,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ public class CategoriaService implements ICategoriaService{
     public List<CategoriaDTO> obtenerCategorias() {
         return categoriaRepository.findAll()
                 .stream()
-                .map(CategoriaDTO::new)
+                .map(categoria -> new CategoriaDTO(categoria))
                 .collect(Collectors.toList());
     }
 
@@ -37,6 +38,8 @@ public class CategoriaService implements ICategoriaService{
                 Categoria.builder()
                         .nombre(categoriaRequest.getNombre())
                         .descripcion(categoriaRequest.getDescripcion())
+                        .publicaciones(new HashSet<>())
+                        .habilitado(true)
                         .build()));
     }
 
@@ -61,6 +64,22 @@ public class CategoriaService implements ICategoriaService{
     @Override
     public boolean existsByNombre(String nombre){
         return categoriaRepository.existsByNombre(nombre);
+    }
+
+    @Override
+    public Categoria findByNombre(String nombre) {
+        return categoriaRepository.findByNombre(nombre);
+    }
+
+    @Override
+    public void habilitarODeshabilitarCategoria(int id) {
+        Categoria categoria = categoriaRepository.findById(id).orElse(null);
+
+        if(categoria.isHabilitado())categoria.setHabilitado(false);
+        else {
+            categoria.setHabilitado(true);
+        }
+        categoriaRepository.save(categoria);
     }
 
 }

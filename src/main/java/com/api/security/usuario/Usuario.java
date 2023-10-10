@@ -43,11 +43,7 @@ public class Usuario implements UserDetails{
     private Persona persona;
 
     @Override
-<<<<<<< HEAD
-    public List<? extends GrantedAuthority> getAuthorities() {
-=======
     public Collection<? extends GrantedAuthority> getAuthorities() {
->>>>>>> 5a38433d814f4ecb91dc3433ae698291aba624b4
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 

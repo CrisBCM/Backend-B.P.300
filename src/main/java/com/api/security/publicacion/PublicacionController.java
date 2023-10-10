@@ -32,8 +32,7 @@ public class PublicacionController {
     }
     @PostMapping("/añadir/{idPersona}")
     public ResponseEntity<PublicacionDTO> añadirPublicacion(@PathVariable int idPersona, @RequestBody PublicacionRequest requestPublicacion){
-        
-        System.out.println("REQUEST PUBLICACION : " + requestPublicacion);
+
        Publicacion nuevaPublicacion = publicacionService.añadirPublicacion(idPersona, requestPublicacion);
        
        return ResponseEntity.ok(new PublicacionDTO(nuevaPublicacion));

@@ -14,4 +14,6 @@ public interface ICategoriaService{
 
     public void editarCategoria(int id, String nuevoNombre, String nuevaDescripcion);
     public boolean existsByNombre(String nombre);
+    public Categoria findByNombre(String nombre);
+    public void habilitarODeshabilitarCategoria(int id);
 }

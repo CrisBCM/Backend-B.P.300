@@ -13,12 +13,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
+import lombok.*;
+
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -50,4 +48,48 @@ public class Persona {
     
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private List<Respuesta> respuestas;
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void setPesoCorporal(int pesoCorporal) {
+        this.pesoCorporal = pesoCorporal;
+    }
+
+    public void setCantidadActividad(double cantidadActividad) {
+        this.cantidadActividad = cantidadActividad;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setImgAvatar(Imagen imgAvatar) {
+        this.imgAvatar = imgAvatar;
+    }
+
+    public void setEstomago(Estomago estomago) {
+        this.estomago = estomago;
+    }
+
+    public void setPublicaciones(List<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+    public void addPublicacion(Publicacion publicacion){
+        publicacion.setPersona(this);
+        publicaciones.add(publicacion);
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public void setRespuestas(List<Respuesta> respuestas) {
+        this.respuestas = respuestas;
+    }
 }

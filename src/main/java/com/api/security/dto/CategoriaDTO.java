@@ -13,7 +13,8 @@ public class CategoriaDTO {
     private int id;
     private String nombre;
     private String descripcion;
-    private Set<PublicacionDTO> publicaciones = new HashSet<>();
+    private Set<PublicacionDTO> publicaciones;
+    private boolean habilitado;
 
     public CategoriaDTO (Categoria categoria){
         id = categoria.getId();
@@ -21,7 +22,8 @@ public class CategoriaDTO {
         descripcion = categoria.getDescripcion();
         publicaciones = categoria.getPublicaciones()
                 .stream()
-                .map(PublicacionDTO::new)
+                .map(publicacion -> new PublicacionDTO(publicacion))
                 .collect(Collectors.toSet());
+        habilitado = categoria.isHabilitado();
     }
 }

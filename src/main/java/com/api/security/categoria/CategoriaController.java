@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/categoria")
@@ -23,18 +24,11 @@ public class CategoriaController {
     @GetMapping("/todas")
     public List<CategoriaDTO> getCategorias()
     {
-<<<<<<< HEAD
-=======
-        System.out.println(authentication.getAuthorities() + " AUTORITHIES DE JUANNNNN");
-        System.out.println(authentication.isAuthenticated() + "IS AUTHENTICATED");
-
->>>>>>> 5a38433d814f4ecb91dc3433ae698291aba624b4
         return categoriaService.obtenerCategorias();
     }
     @GetMapping("/resumen")
     public List<CategoriaResumenDTO> getCategoriasResumen()
     {
-<<<<<<< HEAD
         return categoriaService.obtenerResumenCategorias();
     }
     @PostMapping("/crear")
@@ -43,9 +37,6 @@ public class CategoriaController {
         if(categoriaService.existsByNombre(categoriaRequest.getNombre()))
             return new ResponseEntity<>("El nombre de la categoria ya existe", HttpStatus.BAD_REQUEST);
 
-=======
-        System.out.println(categoriaRequest + "LLEGO EL CATEGORIA REQU");
->>>>>>> 5a38433d814f4ecb91dc3433ae698291aba624b4
         return ResponseEntity.ok(categoriaService.crearCategoria(categoriaRequest));
     }
 
@@ -62,5 +53,9 @@ public class CategoriaController {
                                                      @RequestParam ("nuevaDescripcion") String nuevaDescripcion)
     {
         categoriaService.editarCategoria(id, nuevoNombre, nuevaDescripcion);
+    }
+    @PostMapping("/cambiarestado/{id}")
+    public void cambiarEstado(@PathVariable int id){
+        categoriaService.habilitarODeshabilitarCategoria(id);
     }
 }

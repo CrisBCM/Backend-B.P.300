@@ -2,6 +2,7 @@ package com.api.security.publicacion;
 
 import com.api.security.categoria.Categoria;
 import com.api.security.categoria.CategoriaRepository;
+import com.api.security.categoria.ICategoriaService;
 import com.api.security.comida.Comida;
 import com.api.security.dto.PublicacionRequestDTO;
 import com.api.security.persona.Persona;
@@ -21,7 +22,7 @@ public class PublicacionService implements IPublicacionService{
     @Autowired
     PersonaRepository personaRepo;
     @Autowired
-    CategoriaRepository categoriaRepository;
+    ICategoriaService categoriaService;
     
     @Override
     public List<Publicacion> obtenerPublicaciones() {
@@ -32,29 +33,21 @@ public class PublicacionService implements IPublicacionService{
     public Publicacion añadirPublicacion(int idPersona, PublicacionRequest requestPublicacion) {
         
         Persona persona = personaRepo.findById(idPersona).orElse(null);
-        Categoria categoria = categoriaRepository.findByNombre(requestPublicacion.getCategoria());
+        Categoria categoria = categoriaService.findByNombre(requestPublicacion.getCategoria());
         
         Publicacion publicacion = Publicacion.builder()
                                     .autor(persona.getNombreUsuario())
-                                    .categoria(categoria)
                                     .titulo(requestPublicacion.getTitulo())
                                     .contenido(requestPublicacion.getContenido())
                                     .puntuacion(0)
                                     .fotoAutor(persona.getImgAvatar().getPath())
                                     .fecha(LocalDateTime.now())
-                                    .persona(persona)
                                     .build();
 
-        List<Publicacion> publicaciones = persona.getPublicaciones();
+        persona.addPublicacion(publicacion);
+        categoria.addPublicacion(publicacion);
 
-        publicaciones.add(publicacion);
-
-        persona.setPublicaciones(publicaciones);
-
-        Persona personaGuardada = personaRepo.save(persona);
-        
-        Publicacion publicacionGuardada = Collections.max(personaGuardada.getPublicaciones(), Comparator.comparingLong(Publicacion::getId));
-        return publicacionGuardada;
+        return publicacionRepository.save(publicacion);
     }
 
     @Override
