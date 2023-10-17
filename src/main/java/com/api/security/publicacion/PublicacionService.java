@@ -23,6 +23,8 @@ public class PublicacionService implements IPublicacionService{
     PersonaRepository personaRepo;
     @Autowired
     ICategoriaService categoriaService;
+    @Autowired
+    CategoriaRepository categoriaRepository;
     
     @Override
     public List<Publicacion> obtenerPublicaciones() {
@@ -52,7 +54,13 @@ public class PublicacionService implements IPublicacionService{
 
     @Override
     public void eliminarPublicacion(int idPublicacion) {
-        publicacionRepository.deleteById(idPublicacion);
+        Categoria categoria = publicacionRepository.findById(idPublicacion).orElse(null).getCategoria();
+
+        if(categoria != null){
+            publicacionRepository.deleteById(idPublicacion);
+            categoria.setCantidadPublicaciones();
+            categoriaRepository.save(categoria);
+        }
     }
 
     @Override

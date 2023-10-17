@@ -2,12 +2,14 @@ package com.api.security.categoria;
 
 import com.api.security.dto.CategoriaDTO;
 import com.api.security.dto.CategoriaResumenDTO;
+import com.api.security.dto.PublicacionDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -80,6 +82,14 @@ public class CategoriaService implements ICategoriaService{
             categoria.setHabilitado(true);
         }
         categoriaRepository.save(categoria);
+    }
+
+    @Override
+    public Set<PublicacionDTO> getPublicacionesDeCategoria(String nombre) {
+        return findByNombre(nombre).getPublicaciones()
+                .stream()
+                .map(PublicacionDTO::new)
+                .collect(Collectors.toSet());
     }
 
 }

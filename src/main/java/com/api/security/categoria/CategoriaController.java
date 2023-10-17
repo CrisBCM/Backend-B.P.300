@@ -2,6 +2,7 @@ package com.api.security.categoria;
 
 import com.api.security.dto.CategoriaDTO;
 import com.api.security.dto.CategoriaResumenDTO;
+import com.api.security.dto.PublicacionDTO;
 import com.api.security.usuario.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,11 +28,18 @@ public class CategoriaController {
     {
         return categoriaService.obtenerCategorias();
     }
+    @GetMapping("/{nombre}")
+    public Set<PublicacionDTO> getPublicacionesDeCategoria(@PathVariable String nombre)
+    {
+        return categoriaService.getPublicacionesDeCategoria(nombre);
+    }
     @GetMapping("/resumen")
     public List<CategoriaResumenDTO> getCategoriasResumen()
     {
         return categoriaService.obtenerResumenCategorias();
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity<Object> crearCategoria(@RequestBody CategoriaRequest categoriaRequest)
     {
@@ -54,6 +63,7 @@ public class CategoriaController {
     {
         categoriaService.editarCategoria(id, nuevoNombre, nuevaDescripcion);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/cambiarestado/{id}")
     public void cambiarEstado(@PathVariable int id){
         categoriaService.habilitarODeshabilitarCategoria(id);

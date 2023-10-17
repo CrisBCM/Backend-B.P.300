@@ -13,17 +13,19 @@ public class CategoriaDTO {
     private int id;
     private String nombre;
     private String descripcion;
-    private Set<PublicacionDTO> publicaciones;
+    private int cantidadPublicaciones;
+    private UltimaPublicacionDTO ultimaPublicacion;
     private boolean habilitado;
 
     public CategoriaDTO (Categoria categoria){
         id = categoria.getId();
         nombre = categoria.getNombre();
         descripcion = categoria.getDescripcion();
-        publicaciones = categoria.getPublicaciones()
-                .stream()
-                .map(publicacion -> new PublicacionDTO(publicacion))
-                .collect(Collectors.toSet());
+        cantidadPublicaciones = categoria.getCantidadPublicaciones();
         habilitado = categoria.isHabilitado();
+        if(!categoria.getPublicaciones().isEmpty()) ultimaPublicacion = new UltimaPublicacionDTO(categoria.getPublicaciones()
+                .stream()
+                .max((a,b) -> a.getFecha().compareTo(b.getFecha()))
+                .orElse(null));
     }
 }

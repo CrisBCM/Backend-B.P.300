@@ -18,8 +18,10 @@ public class Categoria {
     private int id;
 
     private String nombre;
+    @Column(length = 500)
     private String descripcion;
     private boolean habilitado;
+    private int cantidadPublicaciones;
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private Set<Publicacion> publicaciones;
@@ -39,9 +41,14 @@ public class Categoria {
     public void addPublicacion(Publicacion publicacion){
         publicacion.setCategoria(this);
         publicaciones.add(publicacion);
+        setCantidadPublicaciones();
     }
 
     public void setHabilitado(boolean habilitado) {
         this.habilitado = habilitado;
+    }
+
+    public void setCantidadPublicaciones() {
+        this.cantidadPublicaciones = publicaciones.size();
     }
 }
