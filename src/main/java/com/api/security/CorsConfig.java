@@ -9,7 +9,7 @@ public class CorsConfig implements WebMvcConfigurer{
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("http://localhost:4200", "https://crisbcm.github.io/**", "https://crisbcm.github.io" )
+            .allowedOrigins("https://crisbcm.github.io" )
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
             .allowedHeaders("authorization","content-type", "x-auth-token")
             .allowCredentials(true)

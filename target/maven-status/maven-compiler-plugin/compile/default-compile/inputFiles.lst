@@ -1,14 +1,71 @@
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\usuario\Role.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\SecurityApplication.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\usuario\Usuario.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\usuario\UsuarioRepository.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\auth\RegisterRequest.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\auth\AuthenticationService.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\config\SecurityConfiguration.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\auth\AuthenticationRequest.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\config\JwtAuthenticationFilter.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\config\JwtService.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\config\ApplicationConfig.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\demo\DemoController.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\auth\AuthenticationResponse.java
-D:\Springboot\nuevoProjecto\security\src\main\java\com\api\security\auth\AuthenticationController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comida\Comida.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\config\JwtService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\publicacion\PublicacionService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\usuario\UsuarioRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\auth\AuthenticationService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comentario\ComentarioController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\persona\PersonaService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\CorsConfig.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\respuesta\RespuestaDto.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\ComidaDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\persona\PersonaRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\publicacion\IPublicacionService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\PersonaDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\shared\Tema.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\estomago\EstomagoController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\publicacion\PublicacionController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\imagen\IImagenService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\auth\RegisterRequest.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\CategoriaDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\imagen\ImagenService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\config\SecurityConfiguration.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\demo\DemoController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\CategoriaResumenDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\publicacion\Publicacion.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\auth\AuthenticationController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\PersonaResumenDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\usuario\Role.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\categoria\CategoriaRequest.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\ImagenDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\estomago\IEstomagoService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comentario\IComentarioService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comentario\Comentario.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\UltimaPublicacionDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\persona\PersonaController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\imagen\ImagenController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\config\JwtAuthenticationFilter.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\config\ApplicationConfig.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comentario\ComentarioRequest.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\RespuestaResumenDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\usuario\Usuario.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\respuesta\RespuestaService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\publicacion\PublicacionRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\respuesta\IRespuestaRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comida\ComidaRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\categoria\ICategoriaService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\ComentarioDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\estomago\EstomagoRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\PublicacionResumenDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\imagen\Imagen.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\auth\AuthenticationRequest.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\categoria\Categoria.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comentario\ComentarioRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\auth\AuthenticationResponse.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\categoria\CategoriaService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\respuesta\Respuesta.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\categoria\CategoriaController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\ComentarioResumenDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\respuesta\RespuestaController.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\comentario\ComentarioService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\categoria\CategoriaRepository.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\persona\IPersonaService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\persona\Persona.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\RespuestaDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\publicacion\PublicacionRequest.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\respuesta\IRespuestaService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\estomago\Estomago.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\PublicacionDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\SecurityApplication.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\PublicacionRequestDTO.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\estomago\EstomagoService.java
+C:\Users\mgcri\OneDrive\Documentos\Proyecto Foro\Backend\Backend-B.P.300\src\main\java\com\api\security\dto\EstomagoDTO.java
