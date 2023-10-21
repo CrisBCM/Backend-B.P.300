@@ -27,6 +27,8 @@ public class SecurityConfiguration {
             .csrf()
             .disable()
             .authorizeHttpRequests()
+                .requestMatchers("/demo/hola").permitAll()
+
                 .anyRequest()
                 .permitAll()
             .and()
