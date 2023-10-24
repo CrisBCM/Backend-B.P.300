@@ -65,6 +65,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(nombreUsuario);
             
             if(jwtService.isTokenValid(jwtToken, userDetails)){
+                System.out.println("Token valido");
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 userDetails,
                 null,
@@ -77,7 +78,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
-        
+        System.out.println("TOKEN INVALIDO!");
         filterChain.doFilter(request, response);
     }
     
