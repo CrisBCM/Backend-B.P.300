@@ -1,5 +1,6 @@
 package com.api.security.respuesta;
 
+import com.api.security.Constantes;
 import com.api.security.comentario.Comentario;
 import com.api.security.comentario.ComentarioRepository;
 import com.api.security.persona.Persona;
@@ -30,7 +31,7 @@ public class RespuestaService implements IRespuestaService{
                                    .autor(persona.getNombreUsuario())
                                    .fotoAutor(persona.getImgAvatar().getPath())
                                    .contenido(contenido)
-                                   .fecha(LocalDateTime.now())
+                                   .fecha(LocalDateTime.now(Constantes.ZONA_HORARIA_ARGENTINA))
                                    .persona(persona)
                                    .comentario(comentario)
                                    .build();

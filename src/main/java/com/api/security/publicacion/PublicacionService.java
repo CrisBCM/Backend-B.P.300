@@ -1,5 +1,6 @@
 package com.api.security.publicacion;
 
+import com.api.security.Constantes;
 import com.api.security.categoria.Categoria;
 import com.api.security.categoria.CategoriaRepository;
 import com.api.security.categoria.ICategoriaService;
@@ -43,9 +44,8 @@ public class PublicacionService implements IPublicacionService{
                                     .contenido(requestPublicacion.getContenido())
                                     .puntuacion(0)
                                     .fotoAutor(persona.getImgAvatar().getPath())
-                                    .fecha(LocalDateTime.now())
+                                    .fecha(LocalDateTime.now(Constantes.ZONA_HORARIA_ARGENTINA))
                                     .build();
-
         persona.addPublicacion(publicacion);
         categoria.addPublicacion(publicacion);
 

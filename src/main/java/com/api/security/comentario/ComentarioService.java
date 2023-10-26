@@ -1,5 +1,6 @@
 package com.api.security.comentario;
 
+import com.api.security.Constantes;
 import com.api.security.persona.Persona;
 import com.api.security.persona.PersonaRepository;
 import com.api.security.publicacion.Publicacion;
@@ -30,7 +31,7 @@ public class ComentarioService implements IComentarioService{
         Comentario comentarioNuevo = 
                 Comentario.builder()
                 .contenido(contenido)
-                .fecha(LocalDateTime.now())
+                .fecha(LocalDateTime.now(Constantes.ZONA_HORARIA_ARGENTINA))
                 .autor(persona.getNombreUsuario())
                 .fotoAutor(persona.getImgAvatar().getPath())
                 .persona(persona)
