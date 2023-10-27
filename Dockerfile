@@ -4,6 +4,6 @@ MAINTAINER CRISTIAN
 
 COPY target/security-0.0.1-SNAPSHOT.jar security-0.0.1-SNAPSHOT.jar
 
-PORT 8081
+EXPOSE 8081
 
 ENTRYPOINT ["java","-jar","/security-0.0.1-SNAPSHOT.jar"]"]
